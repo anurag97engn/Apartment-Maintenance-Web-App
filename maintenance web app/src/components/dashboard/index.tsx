@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import { Card, Col, Row, Statistic, Typography, Avatar } from "antd";
-import { useQuery } from "@tanstack/react-query";
-import { getNotices } from "../../api/noticeApi";
-import { getOwners } from "../../api/ownerApi";
-import {
-  BankOutlined,
-  BellOutlined,
-  DollarCircleOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
-
-const { Title, Text } = Typography;
-
-const Dashboard = () => {
-=======
 import { Col, Row, Typography, Avatar, Select } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { getNotices } from "../../api/noticeApi";
@@ -34,7 +18,6 @@ const Dashboard = () => {
   const [selectedYear, setSelectedYear] = useState<string>("all");
   const [selectedOwner, setSelectedOwner] = useState<string | null>(null);
 
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
   const { data: ownerData, isLoading: loadingOwners } = useQuery({
     queryKey: ["owners"],
     queryFn: getOwners,
@@ -45,16 +28,6 @@ const Dashboard = () => {
     queryFn: getNotices,
   });
 
-<<<<<<< HEAD
-  const owners = ownerData?.data || [];
-
-  const totalBalance = owners.reduce((sum, o) => {
-    const total =
-      o.ledger?.reduce((acc: number, entry: any) => acc + entry.amount, 0) || 0;
-    return sum + total;
-  }, 0);
-
-=======
   const { data: miscData, isLoading: loadingMisc } = useQuery({
     queryKey: ["misc"],
     queryFn: getMiscExpenses,
@@ -88,7 +61,6 @@ const Dashboard = () => {
   };
 
   // All filtered and sorted payments
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
   const allPayments = owners
     .flatMap((o) =>
       o.ledger
@@ -98,28 +70,6 @@ const Dashboard = () => {
           name: o.ownerName,
           amount: l.amount,
           description: l.description || "Maintenance Payment",
-<<<<<<< HEAD
-          date: new Date(l.date).toLocaleString(),
-        }))
-    )
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  const latestNotice = noticeData?.data?.[0]?.title || "No notices yet";
-
-  return (
-    <div className="p-6 md:p-10 bg-gradient-to-b from-gray-50 to-white min-h-screen dark:from-gray-900 dark:to-black">
-      <h3
-        className="text-center text-black dark:text-white font-bold text-3xl mb-8"
-        style={{ marginBottom: "3rem" }}
-      >
-        🏢 Apartment Maintenance Dashboard
-      </h3>
-
-      <Row gutter={[24, 24]} justify="center" className="h-full">
-        {/* Total Owners */}
-        <Col xs={24} sm={12} lg={8}>
-          <div className="h-full rounded-2xl bg-gradient-to-br from-gray-500 via-gray-200 to-gray-800 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 shadow-lg hover:shadow-xl transition-all p-6">
-=======
           date: dayjs.utc(l.date),
         }))
     )
@@ -159,7 +109,6 @@ const Dashboard = () => {
         {/* Cards */}
         <Col xs={24} sm={12} lg={8}>
           <div className="h-full p-6 shadow-lg rounded-2xl bg-gradient-to-br from-gray-500 via-gray-200 to-gray-800 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
             <div className="flex items-center gap-4">
               <div className="bg-blue-600 text-white rounded-xl p-3">
                 <TeamOutlined style={{ fontSize: 24 }} />
@@ -176,14 +125,8 @@ const Dashboard = () => {
           </div>
         </Col>
 
-<<<<<<< HEAD
-        {/* Outstanding Balance */}
-        <Col xs={24} sm={12} lg={8}>
-          <div className="h-full rounded-2xl bg-gradient-to-br from-red-300 via-white to-red-600 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 shadow-lg hover:shadow-xl transition-all p-6">
-=======
         <Col xs={24} sm={12} lg={8}>
           <div className="h-full p-6 shadow-lg rounded-2xl bg-gradient-to-br from-red-300 via-white to-red-600 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
             <div className="flex items-center gap-4">
               <div className="bg-green-600 text-white rounded-xl p-3">
                 <BankOutlined style={{ fontSize: 24 }} />
@@ -197,27 +140,17 @@ const Dashboard = () => {
                     totalBalance < 0 ? "text-red-500" : "text-green-500"
                   }`}
                 >
-<<<<<<< HEAD
-                  {loadingOwners ? "..." : `₹${Math.abs(totalBalance)}`}
-=======
                   {loadingOwners || loadingMisc
                     ? "..."
                     : `₹${Math.abs(totalBalance).toLocaleString()}`}
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
                 </div>
               </div>
             </div>
           </div>
         </Col>
 
-<<<<<<< HEAD
-        {/* Latest Notice */}
-        <Col xs={24} sm={12} lg={8}>
-          <div className="h-full rounded-2xl bg-gradient-to-br from-yellow-200 via-white to-yellow-400 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 shadow-lg hover:shadow-xl transition-all p-6">
-=======
         <Col xs={24} sm={12} lg={8}>
           <div className="h-full p-6 shadow-lg rounded-2xl bg-gradient-to-br from-yellow-200 via-white to-yellow-400 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900">
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
             <div className="flex items-center gap-4">
               <div className="bg-yellow-500 text-white rounded-xl p-3">
                 <BellOutlined style={{ fontSize: 24 }} />
@@ -227,13 +160,7 @@ const Dashboard = () => {
                   Latest Notice
                 </div>
                 <div className="text-base font-semibold mt-1 text-gray-900 dark:text-white line-clamp-2 max-w-[200px]">
-<<<<<<< HEAD
-                  {loadingNotices
-                    ? "Loading..."
-                    : latestNotice || "No recent notice"}
-=======
                   {loadingNotices ? "Loading..." : latestNotice}
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
                 </div>
               </div>
             </div>
@@ -241,9 +168,6 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-<<<<<<< HEAD
-      <div className="mt-12 max-w-4xl mx-auto">
-=======
       <DashboardCharts owners={owners} miscExpenses={miscExpenses} />
 
       {/* Filters */}
@@ -279,7 +203,6 @@ const Dashboard = () => {
       {/* Lists */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto px-4">
         {/* Payments */}
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
         <div className="rounded-2xl shadow-lg overflow-hidden">
           <div className="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
             <Title level={4} className="!text-white !mb-0 text-center">
@@ -287,15 +210,9 @@ const Dashboard = () => {
             </Title>
           </div>
 
-<<<<<<< HEAD
-          {allPayments.length > 0 ? (
-            <div className="bg-white dark:bg-gray-900 px-6 py-4 max-h-[400px] overflow-y-auto space-y-4">
-              {allPayments.map((p, idx) => (
-=======
           <div className="bg-white dark:bg-gray-900 px-6 py-4 max-h-[500px] overflow-y-auto space-y-4">
             {allPayments.length > 0 ? (
               allPayments.map((p, idx) => (
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
                 <div
                   key={idx}
                   className="flex items-start gap-4 bg-gray-50 dark:bg-gray-800 hover:shadow-md transition rounded-xl p-4 border border-gray-200 dark:border-gray-700"
@@ -321,18 +238,6 @@ const Dashboard = () => {
                     <div className="text-orange-600 dark:text-blue-400 font-medium">
                       {p.description}
                     </div>
-<<<<<<< HEAD
-                    <div className="text-xs text-gray-400 mt-1">{p.date}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="bg-white dark:bg-gray-900 text-center text-gray-500 dark:text-gray-400 px-6 py-8">
-              No payments recorded yet.
-            </div>
-          )}
-=======
                     <div className="text-xs text-gray-400 mt-1">
                       {new Date(p.date).toLocaleString()}
                     </div>
@@ -384,7 +289,6 @@ const Dashboard = () => {
               </div>
             )}
           </div>
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
         </div>
       </div>
     </div>

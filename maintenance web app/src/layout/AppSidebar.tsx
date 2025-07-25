@@ -25,10 +25,7 @@ const navItems: NavItem[] = [
       { name: "Owners", path: "/owners", pro: false },
       { name: "Notice Board", path: "/noticeBoard", pro: false },
       { name: "Maintenance", path: "/maintenance", pro: false },
-<<<<<<< HEAD
-=======
       { name: "Miscellaneous", path: "/miscellaneous", pro: false },
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
     ],
   },
 ];

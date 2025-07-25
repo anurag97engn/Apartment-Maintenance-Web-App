@@ -9,25 +9,16 @@ import {
   Button,
   message,
   Card,
-<<<<<<< HEAD
-} from "antd";
-import dayjs from "dayjs";
-import { useState } from "react";
-=======
   notification,
 } from "antd";
 import dayjs from "dayjs";
 import { useState } from "react";
 import "antd/dist/reset.css";
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
 
 const Maintenance = () => {
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
-<<<<<<< HEAD
-  const [messageApi, contextHolder] = message.useMessage();
-=======
   const [api, contextHolder] = notification.useNotification();
 
   type NotificationType = "success" | "error";
@@ -38,7 +29,6 @@ const Maintenance = () => {
       description: desc,
     });
   };
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
 
   // Fetch owners
   const { data: ownersData, isLoading: loadingOwners } = useQuery({
@@ -58,12 +48,6 @@ const Maintenance = () => {
     onSuccess: () => {
       form.resetFields();
       queryClient.invalidateQueries(["owners"]);
-<<<<<<< HEAD
-      messageApi.success("Maintenance payment recorded successfully!");
-    },
-    onError: () => {
-      messageApi.error("Failed to update ledger.");
-=======
       openNotificationWithIcon(
         "success",
         "Maintenance Data Recorded Successfully"
@@ -71,7 +55,6 @@ const Maintenance = () => {
     },
     onError: () => {
       openNotificationWithIcon("error", "Failed to fetch the Ledger");
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
     },
   });
 
@@ -90,14 +73,8 @@ const Maintenance = () => {
 
   return (
     <div className="max-w-xl mx-auto">
-<<<<<<< HEAD
-      <div className="rounded-2xl bg-gradient-to-br from-white via-gray-100 to-blue-50 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 shadow-xl p-6 space-y-6 transition-all duration-300">
-        {contextHolder}
-
-=======
       {contextHolder}
       <div className="rounded-2xl bg-gradient-to-br from-white via-gray-100 to-blue-50 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 shadow-xl p-6 space-y-6 transition-all duration-300">
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white text-center">
           💸 Record Maintenance Payment
         </h2>
@@ -140,16 +117,12 @@ const Maintenance = () => {
             }
             rules={[{ required: true, message: "Please select date" }]}
           >
-<<<<<<< HEAD
-            <DatePicker style={{ width: "100%" }} />
-=======
             <DatePicker
               style={{ width: "100%" }}
               disabledDate={(current) => {
                 return current && current < dayjs().startOf("day");
               }}
             />
->>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
           </Form.Item>
 
           <Form.Item
