@@ -9,15 +9,26 @@ import {
   Button,
   message,
   Card,
+  notification,
 } from "antd";
 import dayjs from "dayjs";
 import { useState } from "react";
+import "antd/dist/reset.css";
 
 const Maintenance = () => {
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
-  const [messageApi, contextHolder] = message.useMessage();
+  const [api, contextHolder] = notification.useNotification();
+
+  type NotificationType = "success" | "error";
+
+  const openNotificationWithIcon = (type: NotificationType, desc: string) => {
+    api[type]({
+      message: type,
+      description: desc,
+    });
+  };
 
   // Fetch owners
   const { data: ownersData, isLoading: loadingOwners } = useQuery({
@@ -37,10 +48,13 @@ const Maintenance = () => {
     onSuccess: () => {
       form.resetFields();
       queryClient.invalidateQueries(["owners"]);
-      messageApi.success("Maintenance payment recorded successfully!");
+      openNotificationWithIcon(
+        "success",
+        "Maintenance Data Recorded Successfully"
+      );
     },
     onError: () => {
-      messageApi.error("Failed to update ledger.");
+      openNotificationWithIcon("error", "Failed to fetch the Ledger");
     },
   });
 
@@ -59,9 +73,8 @@ const Maintenance = () => {
 
   return (
     <div className="max-w-xl mx-auto">
+      {contextHolder}
       <div className="rounded-2xl bg-gradient-to-br from-white via-gray-100 to-blue-50 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 shadow-xl p-6 space-y-6 transition-all duration-300">
-        {contextHolder}
-
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white text-center">
           💸 Record Maintenance Payment
         </h2>
@@ -104,7 +117,12 @@ const Maintenance = () => {
             }
             rules={[{ required: true, message: "Please select date" }]}
           >
-            <DatePicker style={{ width: "100%" }} />
+            <DatePicker
+              style={{ width: "100%" }}
+              disabledDate={(current) => {
+                return current && current < dayjs().startOf("day");
+              }}
+            />
           </Form.Item>
 
           <Form.Item

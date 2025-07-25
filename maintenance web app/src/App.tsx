@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
+import Miscellaneous from "./pages/Miscellaneous";
 import Blank from "./pages/Blank";
 import NoticeBoard from "./pages/NoticeBoard";
 import Maintenance from "./pages/Maintenance";
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/owners" element={<Blank />} />
             <Route path="/noticeBoard" element={<NoticeBoard />} />
             <Route path="/maintenance" element={<Maintenance />} />
+            <Route path="/miscellaneous" element={<Miscellaneous />} />
           </Route>
 
           {/* Auth Layout */}
