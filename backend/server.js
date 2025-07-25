@@ -12,9 +12,17 @@ app.use(express.json());
 // Routes
 const ownerRoutes = require("./routes/ownerRoutes");
 const noticeRoutes = require("./routes/noticeRoutes");
+<<<<<<< HEAD
 
 app.use("/api/owners", ownerRoutes);
 app.use("/api/notices", noticeRoutes);
+=======
+const maintenanceRoutes = require("./routes/miscellaneousRoutes");
+
+app.use("/api/owners", ownerRoutes);
+app.use("/api/notices", noticeRoutes);
+app.use("/api/misc-expenses", maintenanceRoutes);
+>>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
 
 // MongoDB Connection
 mongoose

@@ -23,7 +23,10 @@
     "apexcharts": "^4.1.0",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
+<<<<<<< HEAD
     "firebase": "^12.0.0",
+=======
+>>>>>>> ff57b2d7942cd4b2e77c6dc1908f914fb036fb17
     "flatpickr": "^4.6.13",
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
