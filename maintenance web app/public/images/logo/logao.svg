@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<svg width="500" height="160" viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+	<style>
+.title { font: bold 24px sans-serif; fill: #333; }
+.drone-body { fill: #0057B8; }
+.arm { stroke: #0057B8; stroke-width: 4; stroke-linecap: round; }
+.propeller { fill: #00AEEF; }
+</style>
+	<circle class="drone-body" cx="60" cy="80" r="14"/>
+	<circle class="propeller" cx="30" cy="50" r="10"/>
+	<circle class="propeller" cx="90" cy="50" r="10"/>
+	<circle class="propeller" cx="30" cy="110" r="10"/>
+	<circle class="propeller" cx="90" cy="110" r="10"/>
+	<line class="arm" x1="60" y1="80" x2="30" y2="50"/>
+	<line class="arm" x1="60" y1="80" x2="90" y2="50"/>
+	<line class="arm" x1="60" y1="80" x2="30" y2="110"/>
+	<line class="arm" x1="60" y1="80" x2="90" y2="110"/>
+	<text x="130" y="90" class="title">Maintenance Web App</text>
+</svg>
